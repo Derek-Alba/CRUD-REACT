@@ -5,6 +5,7 @@ import './style.css'
 import ButtonDelete from "./buttonDelete"
 import ButtonEdit from "./buttonEdit"
 import ButtonCreateUser from "./buttonCreateUser"
+import { NavLink } from "react-router-dom"
 function Estudiantes() {
   const { obtenerUser, handleForm, isModalOpen, updateUser,
     form, successCreateUser, handleEdit, resetForm,
@@ -96,6 +97,11 @@ function Estudiantes() {
                         <ButtonDelete
                           onDelete={() => handleDelete(item.id)}
                         />
+                        <NavLink
+                          to={`/profile/${item.id}`}
+                          className="btn btn-dark p-3" >
+                          View Profile
+                        </NavLink>
                       </div>
                     </td>
                   </tr>
@@ -106,15 +112,15 @@ function Estudiantes() {
         </table>
       </div>
       <nav aria-label="Page navigation example ">
-        <ul className="pagination d-flex justify-content-center mt-3">
+        <ul className="pagination d-flex justify-content-center mt-3" >
           <li className="page-item"><a className="page-link" onClick={back}>Previous</a></li>
-          {
+          {/* {
             users.map((item, index) => {
               if (index % 10 === 0) {
-                return <li className="page-item"><a className="page-link" href="#">{cont++}</a></li>
+                return <li className="page-item" key={item}><a className="page-link" href="#">{cont++}</a></li>
               }
             })
-          }
+          } */}
           <li className="page-item"><a className="page-link" onClick={next}>Siguiente</a></li>
         </ul>
       </nav>

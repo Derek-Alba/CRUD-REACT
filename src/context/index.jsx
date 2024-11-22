@@ -16,6 +16,7 @@ export const EstudiantesProvider = ({ children }) => {
     const [isModalOpen, setIsOpenModal] = useState(false)
     const [modalDelete, setModalDelete] = useState(false)
     const [users, setUsers] = useState([])
+    const [profile, setProfile] = useState({})
     const [form, setForm] = useState(
         { name: '', email: '', password: '', avatar: '' }
     )
@@ -146,7 +147,10 @@ export const EstudiantesProvider = ({ children }) => {
         setEstudiantes(users.slice(itemsByPage - 20, itemsByPage - 10))
         setItemsByPage(itemsByPage - 10)
     }
-
+    const cargarPerfil = async (id) => {
+        const response = await axios.get(`https://api.escuelajs.co/api/v1/users/${id}`)
+        setProfile(response.data)
+    }
     return (
         <EstudiantesContext.Provider value={
             {
@@ -178,7 +182,9 @@ export const EstudiantesProvider = ({ children }) => {
                 setErrorLogin,
                 next,
                 back,
-                users
+                users,
+                cargarPerfil,
+                profile
 
 
 
